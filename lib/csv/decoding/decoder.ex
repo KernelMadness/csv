@@ -50,7 +50,7 @@ defmodule CSV.Decoding.Decoder do
       ...> |> Enum.take(2)
       [ok: [\"a\", \"b\"], ok: [\"c\", \"d\"]]
 
-  Map an existing stream of lines separated by a token to a stream of rows with 
+  Map an existing stream of lines separated by a token to a stream of rows with
   a header row:
 
       iex> [\"a;b\",\"c;d\", \"e;f\"]
@@ -118,9 +118,9 @@ defmodule CSV.Decoding.Decoder do
   end
 
   defp decode_row({line, index, headers, row_length}, options) do
-    with {:ok, parsed, _} <- parse_row({line, index}, options),
-         {:ok, _} <- validate_row_length({parsed, index}, row_length),
-         do: build_row(parsed, headers)
+    with {:ok, parsed, _} <- parse_row({line, index}, options) do
+      build_row(parsed, headers)
+    end
   end
 
   defp parse_row({line, index}, options) do
